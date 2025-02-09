@@ -57,7 +57,8 @@ async function fetchUserNuts(fid: number): Promise<NutStats> {
   const client = new NeynarAPIClient(config);
   
   // Get user details
-  const user = await client.lookupUserByFid(fid);
+  const { users } = await client.fetchBulkUsers({ fids: [fid] });
+  const user = users[0];
   
   // Fetch all casts since Feb 1 2025 with 🥜 emoji
   const startDate = new Date('2025-02-01T00:00:00Z');
