@@ -65,7 +65,7 @@ async function fetchUserNuts(fid: number): Promise<NutStats> {
   const { casts } = await client.fetchFeed({
     feedType: 'following',
     fid,
-    startTime: startDate.toISOString(),
+    startTimestamp: startDate.getTime(),
     limit: 1000
   });
 
