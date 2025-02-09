@@ -7,7 +7,7 @@ import sdk, {
   SignIn as SignInCore,
   type Context,
 } from "@farcaster/frame-sdk";
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { NeynarAPIClient, Configuration } from "@neynar/nodejs-sdk";
 import { NEYNAR_API_KEY, DAILY_ALLOWANCE } from "~/lib/constants";
 import { PurpleButton } from "~/components/ui/PurpleButton";
 import {
@@ -53,7 +53,8 @@ const getDailyResetTime = () => {
 };
 
 async function fetchUserNuts(fid: number): Promise<NutStats> {
-  const client = new NeynarAPIClient(NEYNAR_API_KEY);
+  const config = new Configuration({ apiKey: NEYNAR_API_KEY });
+  const client = new NeynarAPIClient(config);
   
   // Get user details
   const user = await client.lookupUserByFid(fid);
