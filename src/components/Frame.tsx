@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useCallback, useState } from "react";
+import Image from 'next/image';
 import sdk, {
   AddFrame,
   SignIn as SignInCore,
   type Context,
 } from "@farcaster/frame-sdk";
+import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { NEYNAR_API_KEY, DAILY_ALLOWANCE } from "~/lib/constants";
+import { PurpleButton } from "~/components/ui/PurpleButton";
 import {
   Card,
   CardHeader,
@@ -109,10 +113,12 @@ function NutUserCard({ userData, nutStats }: { userData: Context.FrameContext['u
       <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-amber-600/10" />
       <CardHeader>
         <div className="flex items-center gap-4">
-          <img 
-            src={userData.pfpUrl} 
-            alt="Profile"
-            className="w-12 h-12 rounded-full border-2 border-amber-500"
+          <Image 
+            src={userData.pfpUrl}
+            alt="Profile picture"
+            width={48}
+            height={48}
+            className="rounded-full border-2 border-amber-500"
           />
           <div>
             <CardTitle className="text-amber-700 dark:text-amber-300">
