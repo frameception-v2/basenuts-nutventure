@@ -62,11 +62,10 @@ async function fetchUserNuts(fid: number): Promise<NutStats> {
   
   // Fetch all casts since Feb 1 2025 with 🥜 emoji
   const startDate = new Date('2025-02-01T00:00:00Z');
-  const { casts } = await client.fetchFeed({
-    feedType: 'user',
+  const { casts } = await client.fetchCasts({
     fid,
-    startTimestamp: startDate.toISOString(),
-    limit: 1000
+    limit: 1000,
+    startTimestamp: startDate.toISOString()
   });
 
   let receivedNuts = 0;
